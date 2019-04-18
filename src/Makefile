@@ -21,7 +21,7 @@ img: helloos.img
 
 .PHONY: run
 run: img
-	qemu-system-i386 -drive file=helloos.img,format=raw,index=0,media=disk
+	qemu-system-i386 -boot a -drive file=helloos.img,format=raw,if=floppy
 
 .PHONY: clean
 clean:
