@@ -1,18 +1,22 @@
-
-# デフォルト動作
+TOOLPATH = ../z_tools/
+NASK     = $(TOOLPATH)nask.exe
+EDIMG    = $(TOOLPATH)edimg.exe
 
 default: img
 
-# ファイル生成規則
-
+#
+# rule
+#
 ipl.bin : ipl.nas Makefile
-	../z_tools/nask.exe ipl.nas ipl.bin ipl.lst
+	$(NASK) ipl.nas ipl.bin ipl.lst
 
 helloos.img : ipl.bin Makefile
-	../z_tools/edimg.exe   imgin:../z_tools/fdimg0at.tek \
+	$(EDIMG) imgin:../z_tools/fdimg0at.tek \
 		wbinimg src:ipl.bin len:512 from:0 to:0   imgout:helloos.img
 
-# コマンド
+#
+# commands
+#
 .PHONY: asm
 asm: ipl.bin
 
